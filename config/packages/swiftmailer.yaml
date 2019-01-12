@@ -1,0 +1,8 @@
+swiftmailer:
+    transport: smtp
+    host: email-smtp.eu-west-1.amazonaws.com
+    username: AKIAIAFOOIBNVM42XSOA
+    password: AloWEJ5vjmm80DfuQXI1dlle/R6KSZDFDdKpxLj7PzYz
+    encryption: tls
+    url: '%env(MAILER_URL)%'
+    spool: { type: 'memory' }
