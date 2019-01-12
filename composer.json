@@ -7,6 +7,7 @@
     "ext-iconv": "*",
     "doctrine/doctrine-bundle": "*",
     "doctrine/orm": "*",
+    "symfony/asset": "4.2.*",
     "symfony/console": "4.2.*",
     "symfony/dependency-injection": "*",
     "symfony/dotenv": "4.2.*",
@@ -14,7 +15,8 @@
     "symfony/framework-bundle": "4.2.*",
     "symfony/swiftmailer-bundle": "*",
     "symfony/twig-bundle": "4.2.*",
-    "symfony/yaml": "4.2.*"
+    "symfony/yaml": "4.2.*",
+    "twig/twig": "^2.6"
   },
   "config": {
     "preferred-install": {
