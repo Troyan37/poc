@@ -10,8 +10,8 @@ doctrine:
         # configure these for your database server
         driver: 'pdo_mysql'
         host: 127.0.0.1
-        port: null
-        dbname: mailDB
+        port: 3306
+        dbname: maildb
         user: root
         password: admin
         server_version: '5.7'

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>MailApp</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/noscript.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/ie9.css') }}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-diamond"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <h1>Adresy</h1>
+                <table id="emailTable">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Akcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for email in emails %}
+                        <tr>
+                            <td>{{ email.emailAddress }}</td>
+                            <td>  <ul class="actions">
+                                    <li><input type="submit" value="Edytuj" class="special"/></li>
+                                    <li><input class="delete" type="reset" data-id="{{ email.emailId }}" value="Usuń"/></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation">
+                    {{ knp_pagination_render(emails) }}
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.php/test">Wróć</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">&copy; Mateusz Trojanowski. Uniwersytet Śląski: <a href="">2018</a>.</p>
+    </footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/skel.min.js') }}"></script>
+<script src="{{ asset('js/util.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/crud.js') }}"></script>
+
+
+</body>
+</html>
+
+

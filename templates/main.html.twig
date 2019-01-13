@@ -3,12 +3,12 @@
 <html>
 <head>
     <title>MailApp</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/noscript.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/ie9.css') }}" rel="stylesheet" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/noscript.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/ie9.css') }}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
         <div class="content">
             <div class="inner">
                 <h1>Mail App</h1>
-                <p>Aplikacja webowa do automatyzacji wysylania wiadomosci e-mail<br />
+                <p>Aplikacja webowa do automatyzacji wysylania wiadomosci e-mail<br/>
                     do wielu adresatów </p>
             </div>
         </div>
@@ -34,7 +34,6 @@
                 <li><a href="#tag">Tagi</a></li>
                 <li><a href="#email">Adresy</a></li>
                 <li><a href="#send">Wyslij</a></li>
-                <!--<li><a href="#elements">Elements</a></li>-->
             </ul>
         </nav>
     </header>
@@ -46,27 +45,41 @@
         <article id="intro">
             <h2 class="major">Działanie</h2>
 
-            <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#tag">awesome work</a>.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+            <p>Aplikacja Mail App służy do automatyzacji masowego wysyłania wiadmości mailowych. Jej działanie jest oparte na technologii
+                Amazon SES i Symfony Swiftmailer. Aplikacja jest hostowana na serwerze Amazon EC2.</a>.</p>
+            <p>Działanie aplikacji ...</p>
+
+            <button><a href="">Aktywne mailingi</a></button>
+            <button><a href="">Zweryfikuj adres nadawcy</a></button>
         </article>
 
         <!-- Work -->
         <article id="tag">
             <h2 class="major">Tagi</h2>
             <span class="image main">
-                    <img src="{{ asset('img/pic02.jpg') }}" alt="Example" />
+                    <img src="{{ asset('img/pic02.jpg') }}" alt="Example"/>
                </span>
-            <p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+            <p>Tagi służą podzielniu adresów mailowych na pomniejsze grupy. Tag 'ALL' zawiera wszystkie adresy mailowe.</p>
+            <p>Aby obejrzeć listę dostępnych tagów, naciśnij 'Wszystkie tagi'. Tagi są tworzone automatycznie poprzez dodanie adresu z
+            nieistniejącym wcześniej tagiem. Jeśli tag nie ma przypisanego żadnego adresu, zostanie automatycznie usunięty.</p>
+            <button><a href="../index.php/listTag">Wszystkie tagi</a></button>
+
         </article>
 
         <!-- About -->
         <article id="email">
             <h2 class="major">Adresy</h2>
             <span class="image main">
-                    <img src="{{ asset('img/pic03.jpg') }}" alt="Example" />
+                    <img src="{{ asset('img/pic03.jpg') }}" alt="Example"/>
                 </span>
-            <p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+            <p>Tutaj możesz zarządzać adresami mailowymi dostępnymi w aplikacji. Każdy adres jest przypisany do tagu,
+            który następnie wykorzystywany jest przez mailingi.</p>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+            <button><a href="../index.php/addEmail">Wszystkie adresy</a></button>
         </article>
 
         <!-- Wyslij -->
@@ -75,11 +88,11 @@
             <form method="post" action="{{ path('mail') }}">
                 <div class="field half first">
                     <label for="name">Temat</label>
-                    <input type="text" name="name" id="name" />
+                    <input type="text" name="name" id="name"/>
                 </div>
                 <div class="field half">
-                    <label for="email">Grupa odbiorców</label>
-                    <input type="text" name="email" id="email" />
+                    <label for="email">Grupa odbiorców / Tag</label>
+                    <input type="text" name="email" id="email"/>
                 </div>
                 <div class="field">
                     <label for="message">Wiadomość</label>
@@ -87,8 +100,7 @@
                 </div>
                 <ul class="actions">
                     <li><input type="submit" value="Wyslij" class="special"/></li>
-                    <li><input type="reset" value="Reset" /></li>
-                    <li><input type="reset" value="Wybierz wzór" /></li>
+                    <li><input type="reset" value="Reset"/></li>
                 </ul>
             </form>
         </article>

@@ -1,70 +1,97 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Entity\Email;
+use App\Entity\Entity\Tag;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class TestController extends Controller
 {
     /**
      * @Route("/test", name="Test")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction()
+    public function showAction(Request $request)
     {
-        return $this->render('main.html.twig');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $paginator  = $this->get('knp_paginator');
+
+        //lista email i tag
+        $allEmails = $entityManager->getRepository(Email::class)->findAll();
+       // $allTags = $entityManager->getRepository(Tag::class)->findAll();
+
+
+        $emails = $paginator->paginate(
+        // Doctrine Query, not results
+            $allEmails,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            2
+        );
+
+
+
+        //dodanie email
+        $email = new Email();
+        $email->setEmailAddress('');
+
+        $form = $this->createFormBuilder($email)
+            ->add('emailAddress', TextType::class,  array('label' => 'Adres email'))
+            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        //tag
+       /* $tag = new Tag();
+        $tag->setTagName('');
+
+        $form2 = $this->createFormBuilder($tag)
+            ->add('tagName', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
+            ->getForm();
+
+        $form2->handleRequest($request);*/
+
+        //email
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+
+            $entityManager->persist($task);
+            $entityManager->flush();
+            $email->setEmailAddress('');
+
+        }
+
+        //tag
+       /* if ($form2->isSubmitted() && $form2->isValid()) {
+            $task = $form2->getData();
+
+            $entityManager->persist($task);
+            $entityManager->flush();
+            $tag->setTagName('');
+
+        }*/
+
+
+        return $this->render( 'main.html.twig', array(
+            //'tags' => $allTags,
+            'emails' => $emails,
+            'form' => $form->createView(),
+            //'form2' => $form2->createView()
+        ));
+
+
+        //return $this->render('main.html.twig');
     }
 
 }
-
-/*/*
-require_once '../vendor/autoload.php';
-
-// Create the Transport
-$transport = (new Swift_SmtpTransport('smtp.example.org', 25))
-->setUsername('Test1')
-->setPassword('abcdef')
-;
-
-// Create the Mailer using your created Transport
-$mailer = new Swift_Mailer($transport);
-
-// Create a message
-$message = (new Swift_Message('Test'))
-->setFrom(['john@doe.com' => 'Pan Test'])
-->setTo(['receiver@domain.org', 'other@domain.org' => 'Odbiorca'])
-->setBody('To wcale nie jest spam')
-;
-
-// Send the message
-$result = $mailer->send($message);
-
-    /*
-    public function indexAction($name, \Swift_Mailer $mailer)
-    {
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('mateusztrojanowski37@gmail.com')
-            ->setTo('mateusztrojanowski37@gmail.com')
-            ->setBody("test",
-                'text/plain'
-            );
-
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'Emails/registration.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-
-
-        $mailer->send($message);
-
-        // or, you can also fetch the mailer service this way
-        // $this->get('mailer')->send($message);
-
-    }
-
-*/

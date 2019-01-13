@@ -4,6 +4,7 @@ namespace App\Entity\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Email
  *
@@ -23,18 +24,18 @@ class Email
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="emailAddress", type="string", length=45)
      */
     private $emailAddress;
 
 
     /**
-     * Get id
+     * Get emailId
      *
      * @return int
      */
-    public function getId()
+    public function getEmailId()
     {
         return $this->emailId;
     }
