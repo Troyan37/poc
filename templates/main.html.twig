@@ -47,17 +47,18 @@
 
             <p>Aplikacja Mail App służy do automatyzacji masowego wysyłania wiadmości mailowych. Jej działanie jest oparte na technologii
                 Amazon SES i Symfony Swiftmailer. Aplikacja jest hostowana na serwerze Amazon EC2.</a>.</p>
-            <p>Działanie aplikacji ...</p>
+            <p>Aby wysłać wiadomość przejdź do widoku "Wyślij", a następnie wybierz Tag i wypisz treść wiadomości. Naciśnięcie przycisku
+            wysyłania utworzy nowy mailing, który rozpocznie wysyłanie jak tylko poprzednie mailingi zostaną ukończone.</p>
 
-            <button><a href="">Aktywne mailingi</a></button>
-            <button><a href="">Zweryfikuj adres nadawcy</a></button>
+            <button><a href="../index.php/listMailing">Aktywne mailingi</a></button>
+            <button><a href="../index.php/verifyEmail">Zweryfikuj adres nadawcy</a></button>
         </article>
 
         <!-- Work -->
         <article id="tag">
             <h2 class="major">Tagi</h2>
             <span class="image main">
-                    <img src="{{ asset('img/pic02.jpg') }}" alt="Example"/>
+                    <img src="{{ asset('img/41.jpg') }}" alt="Example"/>
                </span>
             <p>Tagi służą podzielniu adresów mailowych na pomniejsze grupy. Tag 'ALL' zawiera wszystkie adresy mailowe.</p>
             <p>Aby obejrzeć listę dostępnych tagów, naciśnij 'Wszystkie tagi'. Tagi są tworzone automatycznie poprzez dodanie adresu z
@@ -70,13 +71,15 @@
         <article id="email">
             <h2 class="major">Adresy</h2>
             <span class="image main">
-                    <img src="{{ asset('img/pic03.jpg') }}" alt="Example"/>
+                    <img src="{{ asset('img/41.jpg') }}" alt="Example"/>
                 </span>
             <p>Tutaj możesz zarządzać adresami mailowymi dostępnymi w aplikacji. Każdy adres jest przypisany do tagu,
             który następnie wykorzystywany jest przez mailingi.</p>
 
-
-            <button><a href="../index.php/addEmail">Wszystkie adresy</a></button>
+            <ul class="actions">
+                <li> <button><a href="../index.php/addEmail">Wszystkie adresy</a></button> </li>
+                <li><button><a href="../index.php/addNewEmail">Dodaj nowy adres</a></button> </li>
+            </ul>
         </article>
 
         <!-- Wyslij -->

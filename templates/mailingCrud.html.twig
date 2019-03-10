@@ -23,20 +23,21 @@
         </div>
         <div class="content">
             <div class="inner">
-                <h1>Tagi</h1>
+                <h1>Aktywne Mailingi</h1>
                 <table id="emailTable">
                     <thead>
                     <tr>
-                        <th>Tag</th>
+                        <th>Mailing</th>
                         <th>Akcje</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for tag in tags %}
+                    {% for mailing in mailings %}
                         <tr>
-                            <td>{{ tag.tagName }}</td>
+                            <td>{{ mailing.topic }}</td>
                             <td>  <ul class="actions">
                                     <li><input type="submit" value="Info" class="special"/></li>
+                                    <li><input class="delete" type="reset" data-id="{{ mailing.mailingId }}" value="Anuluj"/></li>
                                 </ul>
                             </td>
                         </tr>
@@ -44,7 +45,7 @@
                     </tbody>
                 </table>
                 <div class="navigation">
-                    {{ knp_pagination_render(tags) }}
+                    {{ knp_pagination_render(mailings) }}
                 </div>
             </div>
         </div>
@@ -54,6 +55,7 @@
             </ul>
         </nav>
     </header>
+
 
 
 

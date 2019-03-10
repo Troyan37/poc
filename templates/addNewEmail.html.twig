@@ -22,39 +22,30 @@
             <span class="icon fa-diamond"></span>
         </div>
         <div class="content">
-            <div class="inner">
-                <h1>Tagi</h1>
-                <table id="emailTable">
-                    <thead>
-                    <tr>
-                        <th>Tag</th>
-                        <th>Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for tag in tags %}
-                        <tr>
-                            <td>{{ tag.tagName }}</td>
-                            <td>  <ul class="actions">
-                                    <li><input type="submit" value="Info" class="special"/></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <div class="navigation">
-                    {{ knp_pagination_render(tags) }}
+
+            <h2 class="major">Dodaj nowy</h2>
+            <form method="post" action="../index.php/addNewEmail2">
+                <div class="field">
+                    <label for="email">Adres email</label>
+                    <input type="text" name="email" id="email"/>
                 </div>
-            </div>
+                <div class="field">
+                    <label for="tag">Tag</label>
+                    <input type="text" name="tag" id="tag"/>
+                </div>
+                <div class="field ">
+                <input type="submit" value="Wyslij" class="special"/>
+                </div>
+            </form>
         </div>
+
+
         <nav>
             <ul>
                 <li><a href="../index.php/test">Wróć</a></li>
             </ul>
         </nav>
     </header>
-
 
 
 
