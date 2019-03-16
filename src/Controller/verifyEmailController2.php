@@ -20,14 +20,7 @@ class verifyEmailController2 extends Controller
     public function mainAction()
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        $SesClient = new SesClient([
-            'credentials' => [
-                'key'    => 'AKIAIUSP5O7BGP6GW6YA',
-                'secret' => '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',
-            ],
-            'version' => 'latest',
-            'region' => 'eu-west-1'
-        ]);
+
 
         $email = $_POST['email'];
         
