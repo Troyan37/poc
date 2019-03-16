@@ -19,7 +19,7 @@ class verifyEmailController2 extends Controller
      */
     public function mainAction()
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $SesClient = new SesClient([
             'credentials' => [
                 'key'    => 'AKIAIUSP5O7BGP6GW6YA',

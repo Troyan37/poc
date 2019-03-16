@@ -19,7 +19,7 @@ class MailingController extends AbstractController
 
     public function sendAction()
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         /**
          * @Assert\NotBlank
          */
@@ -41,6 +41,7 @@ class MailingController extends AbstractController
         $mailing = new Mailing();
         $mailing_tag = new Mailing_has_tag();
         $tag = $tagRepository->findOneBy(array('tagName' => $tagName));
+        $time = new \DateTime();
 
         if (!$tag) {
             throw $this->createNotFoundException(
@@ -48,10 +49,13 @@ class MailingController extends AbstractController
             );
         }
 
+
         $mailing->setTopic($topic);
         $mailing->setContent($content);
         $mailing->setFromEmail($fromEmail);
         $mailing->setStatus($status);
+        $mailing->setTimeCreated($time);
+        $mailing->setTimeSent(null);
 
         $entityManager->persist($mailing);
 
@@ -61,7 +65,7 @@ class MailingController extends AbstractController
 
         $mailing = $mailingRepository->findOneBy(array('content' => $content, 'topic' => $topic, 'fromEmail' => $fromEmail, 'status' => 'N'));
 
-        $mailingId = $mailing->getId();
+        $mailingId = $mailing->getMailingId();
         $tagId = $tag->getId();
 
 

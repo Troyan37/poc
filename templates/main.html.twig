@@ -35,6 +35,10 @@
                 <li><a href="#email">Adresy</a></li>
                 <li><a href="#send">Wyslij</a></li>
             </ul>
+            <div class="field">
+                <p></p>
+            <ul><li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li></ul>
+            </div>
         </nav>
     </header>
 
@@ -50,8 +54,8 @@
             <p>Aby wysłać wiadomość przejdź do widoku "Wyślij", a następnie wybierz Tag i wypisz treść wiadomości. Naciśnięcie przycisku
             wysyłania utworzy nowy mailing, który rozpocznie wysyłanie jak tylko poprzednie mailingi zostaną ukończone.</p>
 
-            <button><a href="../index.php/listMailing">Aktywne mailingi</a></button>
-            <button><a href="../index.php/verifyEmail">Zweryfikuj adres nadawcy</a></button>
+            <button><a href="{{ path('index') }}listMailing">Aktywne mailingi</a></button>
+            <button><a href="{{ path('index') }}verifyEmail">Zweryfikuj adres nadawcy</a></button>
         </article>
 
         <!-- Work -->
@@ -63,7 +67,7 @@
             <p>Tagi służą podzielniu adresów mailowych na pomniejsze grupy. Tag 'ALL' zawiera wszystkie adresy mailowe.</p>
             <p>Aby obejrzeć listę dostępnych tagów, naciśnij 'Wszystkie tagi'. Tagi są tworzone automatycznie poprzez dodanie adresu z
             nieistniejącym wcześniej tagiem. Jeśli tag nie ma przypisanego żadnego adresu, zostanie automatycznie usunięty.</p>
-            <button><a href="../index.php/listTag">Wszystkie tagi</a></button>
+            <button><a href="{{ path('index') }}listTag">Wszystkie tagi</a></button>
 
         </article>
 
@@ -77,8 +81,8 @@
             który następnie wykorzystywany jest przez mailingi.</p>
 
             <ul class="actions">
-                <li> <button><a href="../index.php/addEmail">Wszystkie adresy</a></button> </li>
-                <li><button><a href="../index.php/addNewEmail">Dodaj nowy adres</a></button> </li>
+                <li> <button><a href="{{ path('index') }}addEmail">Wszystkie adresy</a></button> </li>
+                <li><button><a href="{{ path('index') }}addNewEmail">Dodaj nowy adres</a></button> </li>
             </ul>
         </article>
 

@@ -8,6 +8,7 @@
     "aws/aws-sdk-php": "^3.89",
     "doctrine/doctrine-bundle": "*",
     "doctrine/orm": "*",
+    "friendsofsymfony/user-bundle": "~2.0",
     "knplabs/knp-paginator-bundle": "^2.8",
     "symfony/asset": "4.2.*",
     "symfony/console": "4.2.*",

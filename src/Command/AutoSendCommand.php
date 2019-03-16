@@ -24,7 +24,7 @@ class AutoSendCommand extends ContainerAwareCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
 
-        //pobierz z bazy i wyslij jedna wiadomosc - uruchom co 1 minute
+        //pobierz z bazy i wyslij jedna wiadomosc - uruchom co 30 sek (Cron)
         $shouldSend = true;
         $entityManager = $this->getContainer()->get('doctrine')->getManager();
 

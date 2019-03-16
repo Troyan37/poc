@@ -22,7 +22,7 @@ class listTagController extends Controller
      */
     public function mainAction(Request $request)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $entityManager = $this->getDoctrine()->getManager();
 
 

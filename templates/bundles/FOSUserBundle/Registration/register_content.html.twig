@@ -1,6 +1,8 @@
-<!DOCTYPE HTML>
+{% trans_default_domain 'FOSUserBundle' %}
 
-<html>
+
+
+
 <head>
     <title>MailApp</title>
     <meta charset="utf-8"/>
@@ -9,36 +11,31 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/noscript.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/ie9.css') }}" rel="stylesheet"/>
-
 </head>
-<body>
 
-<!-- Wrapper -->
 <div id="wrapper">
-
     <!-- Header -->
     <header id="header">
         <div class="logo">
             <span class="icon fa-diamond"></span>
         </div>
         <div class="content">
+            <div class="inner">
+                <h1>Mail App</h1>
 
-            <h2 class="major">Weryfikacja</h2>
-            <form method="post" action="../index.php/verifyEmail2">
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_widget(form) }}
                 <div class="field">
-                    <label for="email">Adres email</label>
-                    <input type="text" name="email" id="email"/>
+                    <p></p>
+                    <input type="submit" value="{{ 'registration.submit'|trans }}" />
                 </div>
-                <div class="field ">
-                <input type="submit" value="Wyslij" class="special"/>
-                </div>
-            </form>
+                {{ form_end(form) }}
+
+            </div>
         </div>
-
-
         <nav>
             <ul>
-                <li><a href="{{ path('index') }}test">Wróć</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Logowanie</a></li>
             </ul>
         </nav>
     </header>
@@ -48,7 +45,7 @@
 
     <!-- Footer -->
     <footer id="footer">
-        <p class="copyright">&copy; Mateusz Trojanowski. Uniwersytet Śląski: <a href="">2018</a>.</p>
+        <p class="copyright">&copy; Mateusz Trojanowski. Uniwersytet Śląski 2018.</p>
     </footer>
 
 </div>
@@ -62,10 +59,4 @@
 <script src="{{ asset('js/skel.min.js') }}"></script>
 <script src="{{ asset('js/util.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('js/crud.js') }}"></script>
-
-
-</body>
-</html>
-
 

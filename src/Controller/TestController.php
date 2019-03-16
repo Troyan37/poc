@@ -21,6 +21,8 @@ class TestController extends Controller
     public function showAction(Request $request)
     {
 
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $entityManager = $this->getDoctrine()->getManager();
         $paginator  = $this->get('knp_paginator');
 

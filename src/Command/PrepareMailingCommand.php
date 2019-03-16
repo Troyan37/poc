@@ -15,15 +15,17 @@ class PrepareMailingCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        //sprawdz czy sa jakies gotowe do wyslania - uruchom co 10 minut
+        //sprawdz czy sa jakies gotowe do wyslania - uruchom co 5-10 minut
 
         $entityManager = $this->getContainer()->get('doctrine')->getManager();
         $mailingRepository = $this->getContainer()->get('doctrine')->getRepository(Mailing::class);
         $mailing = $mailingRepository->findOneBy(array('status' => 'A'));
+        $time = new \DateTime();
 
         if ($mailing != null) {
 
             $mailing->setStatus('S');
+            $mailing->setTimeSent($time);
             $entityManager->flush();
 
         }

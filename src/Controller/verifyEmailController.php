@@ -19,7 +19,7 @@ class verifyEmailController extends Controller
      */
     public function mainAction()
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render( 'verifyEmail.html.twig');
 
         }

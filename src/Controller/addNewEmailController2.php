@@ -18,6 +18,7 @@ class addNewEmailController2 extends Controller
     public function mainAction()
     {
 
+        $this->denyAccessUnlessGranted('ROLE_USER');
         //TODO: Obsługa tagów
 
         $email = $_POST['email'];

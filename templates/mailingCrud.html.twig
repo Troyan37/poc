@@ -37,7 +37,7 @@
                             <td>{{ mailing.topic }}</td>
                             <td>  <ul class="actions">
                                     <li><input type="submit" value="Info" class="special"/></li>
-                                    <li><input class="delete" type="reset" data-id="{{ mailing.mailingId }}" value="Anuluj"/></li>
+                                    <li><a href="{{ path('index') }}listMailing/cancel/{{ mailing.mailingID}}">Anuluj</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="../index.php/test">Wróć</a></li>
+                <li><a href="{{ path('index') }}test">Wróć</a></li>
             </ul>
         </nav>
     </header>

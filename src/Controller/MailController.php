@@ -20,6 +20,7 @@ class MailController extends AbstractController
 
     public function sendAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         // Create the Transport
         $transport = (new Swift_SmtpTransport('email-smtp.eu-west-1.amazonaws.com', 587, 'tls'))
             ->setUsername('AKIAIAFOOIBNVM42XSOA')

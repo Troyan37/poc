@@ -23,13 +23,13 @@ class listMailingController extends Controller
      */
     public function mainAction(Request $request)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $entityManager = $this->getDoctrine()->getManager();
 
 
         $paginator  = $this->get('knp_paginator');
 
-        $allMailings = $entityManager->getRepository(Mailing::class)->findBy(array('status' => 'A'));
+        $allMailings = $entityManager->getRepository(Mailing::class)->findBy(array('status' => array('S','A')));
 
 
         $mailings = $paginator->paginate(
@@ -38,7 +38,7 @@ class listMailingController extends Controller
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
-            4
+            10
         );
 
 
@@ -50,6 +50,47 @@ class listMailingController extends Controller
         }
 
 
+    /**
+     * @Route("/listMailing/cancel/{mailingId}")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param $mailingId
+     */
+    public function cancelEmail($mailingId, Request $request){
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $mailing = $entityManager->getRepository(Mailing::class)->find($mailingId);
+
+        $mailing->setStatus('C');
+
+        $entityManager->flush();
+
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $entityManager = $this->getDoctrine()->getManager();
+
+
+        $paginator  = $this->get('knp_paginator');
+
+        $allMailings = $entityManager->getRepository(Mailing::class)->findBy(array('status' => array('S','A')));
+
+
+        $mailings = $paginator->paginate(
+        // Doctrine Query, not results
+            $allMailings,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            10
+        );
+
+
+        return $this->render( 'mailingCrud.html.twig', array(
+            'mailings' => $mailings
+        ));
+
+    }
 
 
 }

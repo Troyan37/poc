@@ -47,8 +47,55 @@ class Mailing
      *
      * @ORM\Column(name="status", type="string", length=1)
      */
-    //S - wysyłanie, N - nowy, A - oczekuje na wyslanie,  E - błąd, X - zakończono
+    //S - wysyłanie, N - nowy, A - oczekuje na wyslanie,  E - błąd, X - zakończono, C - Anulowany
     private $status;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="timeCreated", type="datetime")
+     */
+    private $timeCreated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timeSent", type="datetime", nullable=true)
+     */
+    private $timeSent;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getTimeCreated(): ?\DateTime
+    {
+        return $this->timeCreated;
+    }
+
+    /**
+     * @param \DateTime|null $timeCreated
+     */
+    public function setTimeCreated(?\DateTime $timeCreated): void
+    {
+        $this->timeCreated = $timeCreated;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getTimeSent(): ?\DateTime
+    {
+        return $this->timeSent;
+    }
+
+    /**
+     * @param \DateTime|null $timeSent
+     */
+    public function setTimeSent(?\DateTime $timeSent): void
+    {
+        $this->timeSent = $timeSent;
+    }
+
 
 
     /**
