@@ -11,10 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-class addNewEmailController extends Controller
+class addNewTagController2 extends Controller
 {
     /**
-     * @Route("/addNewEmail", name="AddNewEmail")
+     * @Route("/addNewTag2", name="AddNewTag2")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function mainAction()
@@ -22,12 +22,24 @@ class addNewEmailController extends Controller
 
         $this->denyAccessUnlessGranted('ROLE_USER');
 
+        $tagName = $_POST['tag'];
+
         $entityManager = $this->getDoctrine()->getManager();
-        $allTags = $entityManager->getRepository(Tag::class)->findAll();
+
+        $tag = new Tag();
+        $tag->setTagName($tagName);
 
 
-        return $this->render( 'addNewEmail.html.twig' ,array(
-            'tags' => $allTags));
+        if($entityManager->getRepository(Tag::class)->findOneBy(array('tagName' => $tagName)) == null){
+
+        $entityManager->persist($tag);
+        $entityManager->flush();
+
+        }else{
+            echo "Taki tag już istnieje!";
+        }
+
+        return $this->render( 'addNewTag.html.twig');
 
         }
 

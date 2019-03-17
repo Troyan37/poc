@@ -23,8 +23,8 @@ class MailController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
         // Create the Transport
         $transport = (new Swift_SmtpTransport('email-smtp.eu-west-1.amazonaws.com', 587, 'tls'))
-            ->setUsername('AKIAIAFOOIBNVM42XSOA')
-            ->setPassword('AloWEJ5vjmm80DfuQXI1dlle/R6KSZDFDdKpxLj7PzYz')
+            ->setUsername('xxx')
+            ->setPassword('xxx')
             ->setStreamOptions([
                 'ssl' => ['allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false]]);
 

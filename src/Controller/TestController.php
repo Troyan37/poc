@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Entity\Email;
 use App\Entity\Entity\Tag;
 
+use App\Entity\Entity\Verified_email;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,7 +29,8 @@ class TestController extends Controller
 
         //lista email i tag
         $allEmails = $entityManager->getRepository(Email::class)->findAll();
-       // $allTags = $entityManager->getRepository(Tag::class)->findAll();
+        $allTags = $entityManager->getRepository(Tag::class)->findAll();
+        $allVerified = $entityManager->getRepository(Verified_email::class)->findAll();
 
 
         $emails = $paginator->paginate(
@@ -37,9 +39,8 @@ class TestController extends Controller
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
-            2
+            4
         );
-
 
 
         //dodanie email
@@ -53,16 +54,6 @@ class TestController extends Controller
 
         $form->handleRequest($request);
 
-        //tag
-       /* $tag = new Tag();
-        $tag->setTagName('');
-
-        $form2 = $this->createFormBuilder($tag)
-            ->add('tagName', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
-            ->getForm();
-
-        $form2->handleRequest($request);*/
 
         //email
         if ($form->isSubmitted() && $form->isValid()) {
@@ -74,22 +65,13 @@ class TestController extends Controller
 
         }
 
-        //tag
-       /* if ($form2->isSubmitted() && $form2->isValid()) {
-            $task = $form2->getData();
-
-            $entityManager->persist($task);
-            $entityManager->flush();
-            $tag->setTagName('');
-
-        }*/
 
 
         return $this->render( 'main.html.twig', array(
-            //'tags' => $allTags,
+            'tags' => $allTags,
             'emails' => $emails,
+            'fromEmails' =>  $allVerified,
             'form' => $form->createView(),
-            //'form2' => $form2->createView()
         ));
 
 

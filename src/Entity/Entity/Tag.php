@@ -35,7 +35,7 @@ class Tag
      *
      * @return int
      */
-    public function getId()
+    public function getTagId()
     {
         return $this->tagId;
     }

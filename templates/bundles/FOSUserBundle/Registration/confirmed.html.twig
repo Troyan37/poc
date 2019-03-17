@@ -1,0 +1,40 @@
+
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<head>
+    <title>MailApp</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/noscript.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/ie9.css') }}" rel="stylesheet"/>
+</head>
+<div id="wrapper">
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock fos_user_content %}
+
+
+
+<!-- Footer -->
+<footer id="footer">
+    <p class="copyright">&copy; Mateusz Trojanowski. Uniwersytet Śląski 2018.</p>
+</footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/skel.min.js') }}"></script>
+<script src="{{ asset('js/util.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>

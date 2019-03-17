@@ -22,41 +22,26 @@
             <span class="icon fa-diamond"></span>
         </div>
         <div class="content">
-            <div class="inner">
-                <h1>Adresy</h1>
-                <table id="emailTable">
-                    <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for email in emails %}
-                        <tr>
-                            <td>{{ email.emailAddress }}</td>
-                            <td>  <ul class="actions">
-                                    <li><button><a href="{{ path('index') }}addEmail/info/{{ email.emailId }}">Info</a></button></li>
-                                    <li><button><a href="{{ path('index') }}addEmail/delete/{{ email.emailId }}">Usuń</a></button></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <div class="navigation">
-                    {{ knp_pagination_render(emails) }}
+
+            <h2 class="major">Dodaj nowy</h2>
+            <form method="post" action="{{ path('index') }}addNewTag2">
+                <div class="field">
+                    <label for="tag">Tag</label>
+                    <input type="text" name="tag" id="tag"/>
                 </div>
-            </div>
+                <div class="field ">
+                <input type="submit" value="Wyslij" class="special"/>
+                </div>
+            </form>
         </div>
+
+
         <nav>
             <ul>
                 <li><a href="{{ path('index') }}test">Wróć</a></li>
             </ul>
         </nav>
     </header>
-
-
 
 
 

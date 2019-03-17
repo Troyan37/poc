@@ -68,6 +68,7 @@
             <p>Aby obejrzeć listę dostępnych tagów, naciśnij 'Wszystkie tagi'. Tagi są tworzone automatycznie poprzez dodanie adresu z
             nieistniejącym wcześniej tagiem. Jeśli tag nie ma przypisanego żadnego adresu, zostanie automatycznie usunięty.</p>
             <button><a href="{{ path('index') }}listTag">Wszystkie tagi</a></button>
+            <button><a href="{{ path('index') }}addNewTag">Dodaj nowy tag</a></button>
 
         </article>
 
@@ -91,12 +92,24 @@
             <h2 class="major">Wysyłanie</h2>
             <form method="post" action="{{ path('mail') }}">
                 <div class="field half first">
-                    <label for="name">Temat</label>
-                    <input type="text" name="name" id="name"/>
+                    <label for="fromEmail">Nadawca</label>
+                    <select name="fromEmail" id="fromEmail">
+                        {% for fromEmail in fromEmails %}
+                            <option value="{{ fromEmail.emailAddress }}">{{fromEmail.emailAddress }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="field half">
-                    <label for="email">Grupa odbiorców / Tag</label>
-                    <input type="text" name="email" id="email"/>
+                    <label for="tag">Grupa odbiorców / Tag</label>
+                    <select name="tag" id="tag">
+                        {% for tag in tags %}
+                            <option value="{{ tag.tagName }}">{{tag.tagName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="name">Temat</label>
+                    <input type="text" name="name" id="name"/>
                 </div>
                 <div class="field">
                     <label for="message">Wiadomość</label>

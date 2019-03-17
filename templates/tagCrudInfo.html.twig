@@ -23,12 +23,12 @@
         </div>
         <div class="content">
             <div class="inner">
-                <h1>Adresy</h1>
+                <h1>{{tag}}</h1>
                 <table id="emailTable">
                     <thead>
                     <tr>
                         <th>Email</th>
-                        <th>Akcje</th>
+                        <th>Akcja</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,8 +36,7 @@
                         <tr>
                             <td>{{ email.emailAddress }}</td>
                             <td>  <ul class="actions">
-                                    <li><button><a href="{{ path('index') }}addEmail/info/{{ email.emailId }}">Info</a></button></li>
-                                    <li><button><a href="{{ path('index') }}addEmail/delete/{{ email.emailId }}">Usuń</a></button></li>
+                                    <li><button><a href="">Usuń</a></button></li>
                                 </ul>
                             </td>
                         </tr>
@@ -55,7 +54,6 @@
             </ul>
         </nav>
     </header>
-
 
 
 

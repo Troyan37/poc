@@ -36,7 +36,8 @@
                         <tr>
                             <td>{{ tag.tagName }}</td>
                             <td>  <ul class="actions">
-                                    <li><input type="submit" value="Info" class="special"/></li>
+                                    <li><button><a href="{{ path('index') }}listTag/info/{{ tag.tagId }}">Info</a></button></li>
+                                    <li><button><a href="{{ path('index') }}listTag/delete/{{ tag.tagId }}">Usuń</a></button></li>
                                 </ul>
                             </td>
                         </tr>

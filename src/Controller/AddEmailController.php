@@ -3,6 +3,7 @@ namespace App\Controller;
 
 
 use App\Entity\Entity\Email;
+use App\Entity\Entity\Email_has_tag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -41,7 +42,6 @@ class AddEmailController extends Controller
         );
 
 
-
         //dodanie email
         $email = new Email();
         $email->setEmailAddress('');
@@ -75,20 +75,27 @@ class AddEmailController extends Controller
 
     /**
      * @Route("/addEmail/delete/{emailId}")
-     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
      * @param $emailId
      */
-        public function deleteEmail($emailId){
+        public function deleteEmail($emailId, Request $request){
 
+            $this->denyAccessUnlessGranted('ROLE_USER');
 
             $entityManager = $this->getDoctrine()->getManager();
+
+            while($entityManager->getRepository(Email_has_tag::class)->findOneBy( array('emailEmailId' => $emailId)) != null){
+            $tagId = $entityManager->getRepository(Email_has_tag::class)->findOneBy( array('emailEmailId' => $emailId));
+            $entityManager->remove($tagId);
+            $entityManager->flush();
+            }
             $email = $entityManager->getRepository(Email::class)->find($emailId);
 
             $entityManager->remove($email);
             $entityManager->flush();
 
-            $response = new Response();
-            $response->send();
+            return AddEmailController::mainAction($request);
 
         }
 

@@ -6,6 +6,7 @@ use App\Entity\Entity\Mailing;
 use App\Entity\Entity\Mailing_has_tag;
 use App\Entity\Entity\Tag;
 
+use App\Entity\Entity\Verified_email;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,10 +26,9 @@ class MailingController extends AbstractController
          */
         $topic = $_POST['name'];
         $content = $_POST['message'];
-        $tagName = $_POST['email'];
-
-        //$fromEmail = $_POST['fromEmail'];
-        $fromEmail = "troyan123@engineer.com";
+        $tagName = $_POST['tag'];
+        $fromEmail = $_POST['fromEmail'];
+        //$fromEmail = "troyan123@engineer.com";
         $status = 'N';
 
 
@@ -37,9 +37,11 @@ class MailingController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $tagRepository = $this->getDoctrine()->getRepository(Tag::class);
         $mailingRepository = $this->getDoctrine()->getRepository(Mailing::class);
+        $allVerified = $entityManager->getRepository(Verified_email::class)->findAll();
 
         $mailing = new Mailing();
         $mailing_tag = new Mailing_has_tag();
+        $allTags = $entityManager->getRepository(Tag::class)->findAll();
         $tag = $tagRepository->findOneBy(array('tagName' => $tagName));
         $time = new \DateTime();
 
@@ -66,7 +68,7 @@ class MailingController extends AbstractController
         $mailing = $mailingRepository->findOneBy(array('content' => $content, 'topic' => $topic, 'fromEmail' => $fromEmail, 'status' => 'N'));
 
         $mailingId = $mailing->getMailingId();
-        $tagId = $tag->getId();
+        $tagId = $tag->getTagId();
 
 
         $mailing_tag->setMailingMailingId($mailingId);
@@ -81,7 +83,9 @@ class MailingController extends AbstractController
         $entityManager->flush();
 
 
-        return $this->render('main.html.twig');
+        return $this->render('main.html.twig' ,array(
+            'tags' => $allTags,
+            'fromEmails' =>  $allVerified));
     }
 
 

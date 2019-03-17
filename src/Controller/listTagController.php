@@ -49,6 +49,33 @@ class listTagController extends Controller
         }
 
 
+    /**
+     * @Route("/listTag/delete/{tagId}")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param $tagId
+     */
+    public function deleteEmail($tagId, Request $request){
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $tag = $entityManager->getRepository(Tag::class)->find($tagId);
+
+        if($tag->getTagName() != 'ALL'){
+        $entityManager->remove($tag);
+        $entityManager->flush();
+        }else{
+
+            echo "Nie można usunąć tagu ALL!";
+
+        }
+
+        return listTagController::mainAction($request);
+
+    }
+
+
 
 
 }

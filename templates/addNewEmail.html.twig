@@ -24,14 +24,18 @@
         <div class="content">
 
             <h2 class="major">Dodaj nowy</h2>
-            <form method="post" action="../index.php/addNewEmail2">
+            <form method="post" action="{{ path('index') }}addNewEmail2">
                 <div class="field">
                     <label for="email">Adres email</label>
                     <input type="text" name="email" id="email"/>
                 </div>
                 <div class="field">
                     <label for="tag">Tag</label>
-                    <input type="text" name="tag" id="tag"/>
+                    <select name="tag" id="tag">
+                        {% for tag in tags %}
+                            <option value="{{ tag.tagName }}">{{tag.tagName }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="field ">
                 <input type="submit" value="Wyslij" class="special"/>

@@ -42,13 +42,13 @@ class AutoSendCommand extends ContainerAwareCommand
 
             $masterIndex = $masterIndexRepository->find(0)->getMaster();
 
-            $mailingId = $mailing->getId();
+            $mailingId = $mailing->getMailingId();
             $topic = $mailing->getTopic();
             $content = $mailing->getContent();
             $fromEmail = $mailing->getFromEmail();
             $singleEmailAddress = null;
 
-            $tag = $tagMailingRepository->findBy(array('mailingMailingId' => $mailingId)); //TODO: obluga wielu tagow
+            $tag = $tagMailingRepository->findBy(array('mailingMailingId' => $mailingId));
 
             //$tagIds = null;
             //$tagName = null;
@@ -62,7 +62,7 @@ class AutoSendCommand extends ContainerAwareCommand
                     array_push($tagIds, $tagRepository->find($t));
                 }
 
-                //TODO: obsluga wielu tagow
+
 
             } else if (sizeof($tag) == 1) {
                 //jeden tag
@@ -90,8 +90,8 @@ class AutoSendCommand extends ContainerAwareCommand
 
             if ($shouldSend) {
                 $transport = (new Swift_SmtpTransport('email-smtp.eu-west-1.amazonaws.com', 587, 'tls'))
-                    ->setUsername('AKIAIAFOOIBNVM42XSOA')
-                    ->setPassword('AloWEJ5vjmm80DfuQXI1dlle/R6KSZDFDdKpxLj7PzYz')
+                    ->setUsername('x')
+                    ->setPassword('x')
                     ->setStreamOptions([
                         'ssl' => ['allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false]]);
                 $mailer = new Swift_Mailer($transport);

@@ -36,8 +36,8 @@
                         <tr>
                             <td>{{ mailing.topic }}</td>
                             <td>  <ul class="actions">
-                                    <li><input type="submit" value="Info" class="special"/></li>
-                                    <li><a href="{{ path('index') }}listMailing/cancel/{{ mailing.mailingID}}">Anuluj</a></li>
+                                    <li><button><a href="{{ path('index') }}listMailing/info/{{ mailing.mailingID}}">Info</a></button></li>
+                                    <li><button><a href="{{ path('index') }}listMailing/cancel/{{ mailing.mailingID}}">Anuluj</a></button></li>
                                 </ul>
                             </td>
                         </tr>

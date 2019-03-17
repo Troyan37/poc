@@ -15,7 +15,32 @@ class Email_has_tag
 
     /**
      * @var int
-     *@ORM\Id
+     *
+     * @ORM\Column(name="email_has_tagId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $emailHasTagId;
+
+    /**
+     * @return int
+     */
+    public function getEmailHasTagId(): int
+    {
+        return $this->emailHasTagId;
+    }
+
+    /**
+     * @param int $emailHasTagId
+     */
+    public function setEmailHasTagId(int $emailHasTagId): void
+    {
+        $this->emailHasTagId = $emailHasTagId;
+    }
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="email_emailId", type="integer")
      */
     private $emailEmailId;
